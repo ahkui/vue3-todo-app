@@ -2,6 +2,10 @@
   <input type="text" v-model="todoInput" />
   <button @click="addTodo">Add</button>
 
+  <p>Total todos: {{ todos.length }}</p>
+  <p>Total todo complete: {{ completedTodos.length }}</p>
+  <p>Total todo active: {{ activeTodos.length }}</p>
+
   <ul>
     <todo-item
       v-for="item in todos"
@@ -13,7 +17,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 import TodoItem from "./TodoItem.vue";
 
@@ -23,6 +27,9 @@ const todos = ref([
   { id: 2, done: false, text: "Create Todo App" },
   { id: 3, done: false, text: "Feedback" },
 ]);
+
+const activeTodos = computed(() => todos.value.filter((todo) => !todo.done));
+const completedTodos = computed(() => todos.value.filter((todo) => todo.done));
 
 const todoInput = ref("");
 function addTodo() {
