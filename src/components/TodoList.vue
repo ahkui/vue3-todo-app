@@ -3,12 +3,14 @@
   <button @click="addTodo">Add</button>
 
   <ul>
-    <li v-for="item in todos" :key="item.id">{{ item.text }}</li>
+    <todo-item v-for="item in todos" :key="item.id" :item="item"></todo-item>
   </ul>
 </template>
 
 <script setup>
 import { ref } from "vue";
+
+import TodoItem from "./TodoItem.vue";
 
 const nextId = ref(4);
 const todos = ref([
