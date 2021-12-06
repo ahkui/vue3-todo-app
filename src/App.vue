@@ -1,8 +1,6 @@
 <template>
   <ul>
-    <li>{{ todos[0].text }}</li>
-    <li>{{ todos[1].text }}</li>
-    <li>{{ todos[2].text }}</li>
+    <li v-for="item in todos" :key="item.id">{{ item.text }}</li>
   </ul>
 </template>
 
